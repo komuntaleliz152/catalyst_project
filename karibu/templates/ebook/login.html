@@ -1,0 +1,243 @@
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<header>
+  <div class="header-left">
+    <a href="/">
+      <img src="{% static 'ebook/images/be.png' %}" alt="Logo">
+    </a>
+    <a href="/"><span>Karibu Groceries</span></a>
+  </div>
+</header>
+
+<div class="main-wrapper">
+  <h2>Login</h2>
+  <form method="POST" class="login-form">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="button-container">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>
+
+<footer>
+  <p>&copy; 2025 Ejidia. All rights reserved |
+    <a href="/">Home</a></p>
+</footer>
+
+<style>
+  body {
+  font-family: Arial, 'Raleway', 'Montserrat', sans-serif; /* Matching inventory and base */
+  background-color: #f0f7f8; /* Soft light blue, matching inventory body */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Matching original body */
+  padding-bottom: 60px; /* Matching original body */
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Subtle overlay for readability */
+  z-index: 1;
+}
+
+header {
+  background-color: #008080; /* Teal, matching navbar and landing footer */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px; /* Matching original header */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999; /* Matching original header */
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left img {
+  height: 50px; /* Matching original logo */
+  width: 50px;
+  border-radius: 10px; /* Adjusted for consistency with navbar logo */
+  border: 1px solid #008080; /* Teal border for cohesion */
+  margin-right: 10px; /* Matching original logo */
+}
+
+.header-left a {
+  text-decoration: none;
+  color: #ffffff; /* White, matching navbar nav-link */
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.header-left a:hover {
+  color: #006666; /* Darker teal, matching nav-link hover */
+}
+
+.main-wrapper {
+  padding-top: 120px; /* Matching original main-wrapper */
+  text-align: center;
+  position: relative;
+  z-index: 2; /* Above overlay */
+}
+
+h2 {
+  font-size: 26px;
+  color: #008080; /* Teal, matching table-header and other headings */
+  margin-bottom: 25px; /* Matching original h2 */
+}
+
+.login-form {
+  background: #ffffff; /* White, matching form-container */
+  border: 3px solid #008080; /* Teal border, fixing original */
+  border-radius: 10px; /* Matching original form */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Matching original shadow */
+  width: 360px; /* Matching original form */
+  margin: 0 auto;
+  padding: 30px; /* Matching original form */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Spacing for crispy forms */
+}
+
+.form-group label {
+  color: #008080; /* Teal, matching edit-form labels */
+  font-weight: bold;
+}
+
+.form-control {
+  border: 1px solid #bbb; /* Matching filter-container inputs */
+  border-radius: 5px; /* Matching original form-control */
+  padding: 10px; /* Matching original form-control */
+  font-size: 16px; /* Matching original form-control */
+  width: 100%;
+  background-color: #ffffff; /* White background for inputs */
+}
+
+.button-container {
+  margin-top: 20px; /* Matching original button-container */
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn-submit {
+  background-color: #008080; /* Teal, matching btn-save */
+  color: #ffffff; /* White text */
+  padding: 10px 25px; /* Matching original btn-primary */
+  font-size: 16px; /* Matching original btn-primary */
+  border-radius: 5px; /* Matching original btn-primary */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.btn-submit:hover {
+  background-color: #006666; /* Darker teal, matching button hovers */
+}
+
+.btn-cancel {
+  background-color: #ced5d7; /* Gray, matching edit-form btn-cancel */
+  color: #ffffff; /* White text */
+  padding: 10px 25px; /* Matching btn-submit */
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.btn-cancel:hover {
+  background-color: #b0b7b9; /* Darker gray, matching btn-cancel hover */
+  color: #ffffff;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #008080; /* Teal, matching base footer and navbar */
+  text-align: center;
+  padding: 10px; /* Matching original footer */
+  color: #ffffff; /* White text, matching base footer */
+  z-index: 2; /* Above overlay */
+}
+
+footer a {
+  color: #ffffff; /* White, matching footer text */
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: #006666; /* Darker teal, matching nav-link hover */
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+
+  .header-left img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .header-left a {
+    font-size: 18px;
+  }
+
+  .main-wrapper {
+    padding-top: 100px;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  footer {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+</style>
+
+{% endblock %}

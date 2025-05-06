@@ -1,0 +1,109 @@
+{% extends 'ebook/base.html' %}
+{% block content %}
+<style>
+.container {
+  background-color: #f0f7f8; /* Soft light blue background */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #008080; /* Teal border */
+  margin: 20px auto;
+  max-width: 600px; /* Constrain width for better readability */
+}
+
+.container h2 {
+  color: #008080; /* Teal, matching table-header */
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-form label {
+  color: #008080; /* Teal for labels */
+  font-weight: bold;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="number"],
+.edit-form textarea,
+.edit-form select {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #bbb; /* Matching filter-container input borders */
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 1rem;
+  background-color: #ffffff; /* White background for inputs */
+}
+
+.edit-form textarea {
+  height: 100px; /* Larger height for textareas */
+  padding: 10px;
+}
+
+.edit-form .btn-save {
+  background-color: #008080; /* Teal, matching filter-container submit */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.edit-form .btn-save:hover {
+  background-color: #006666; /* Darker teal on hover */
+}
+
+.edit-form .btn-cancel {
+  background-color: #ced5d7; /* Gray from inline style */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+}
+
+.edit-form .btn-cancel:hover {
+  background-color: #b0b7b9; /* Slightly darker gray for hover */
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .edit-form input[type="text"],
+  .edit-form input[type="number"],
+  .edit-form textarea,
+  .edit-form select {
+    font-size: 0.9rem;
+  }
+
+  .edit-form .btn-save,
+  .edit-form .btn-cancel {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+</style>
+<div class="container">
+  <h2>Edit Product - {{ product.item_name }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color: #ced5d7; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Save</button>
+    <a href="{% url 'product_detail' product.id %}" style="margin-left: 10px;">Cancel</a>
+  </form>
+</div>
+{% endblock %}

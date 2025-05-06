@@ -1,0 +1,132 @@
+{% extends "ebook/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+  background-color: #f0f7f8; /* Soft light blue, matching inventory body */
+  font-family: Arial, sans-serif; /* Matching inventory */
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem; /* Matching total-sales container */
+}
+
+h3.text-center {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #008080; /* Teal, matching table-header and other headings */
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  border-radius: 25px; /* Matching original form */
+  border: 2px solid #008080; /* Teal border, matching filter-container */
+  background-color: #ffffff; /* White, matching form-container */
+  padding: 30px; /* Matching original form */
+  font-weight: bold;
+  color: #008080; /* Teal for text, matching labels */
+  width: 100%;
+  max-width: 400px; /* Matching original form width */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Matching original shadow */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Spacing for crispy forms */
+}
+
+.form-group label {
+  color: #008080; /* Teal, matching edit-form labels */
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #bbb; /* Matching filter-container inputs */
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 1rem;
+  background-color: #ffffff; /* White background for inputs */
+}
+
+.form-group textarea {
+  height: 100px; /* Matching edit-form textarea */
+  padding: 10px;
+}
+
+input[type="submit"] {
+  background-color: #008080; /* Teal, matching btn-save */
+  color: #ffffff; /* White text */
+  width: 120px;
+  height: 50px; /* Matching original submit button */
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px; /* Matching other buttons */
+  cursor: pointer;
+  float: right;
+}
+
+input[type="submit"]:hover {
+  background-color: #006666; /* Darker teal, matching button hovers */
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  form {
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 10px;
+  }
+
+  h3.text-center {
+    font-size: 1.5rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group textarea,
+  .form-group select {
+    font-size: 0.9rem;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    margin-top: 10px;
+    float: none;
+  }
+}
+</style>
+
+<br />
+<div class="container">
+  <h3 class="text-center">STOCK LEVELS UPDATE</h3>
+  <form action="" method="POST">
+    <br />
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <input
+      type="submit"
+      value="Update"
+      class="btn btn-success btn"
+    />
+  </form>
+</div>
+{% endblock %}

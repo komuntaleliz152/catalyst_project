@@ -1,0 +1,82 @@
+{% load static %}
+<style>
+    .navbar {
+  background-color: #008080; /* Teal, matching base navbar and action-buttons-top */
+  font-weight: bold; /* Matching original navbar */
+  padding: 1rem; /* Consistent with base navbar */
+}
+
+.navbar-logo {
+  height: 90px; /* Matching original logo */
+  border-radius: 10px; /* Adjusted for consistency with buttons/forms */
+  border: 1px solid #008080; /* Teal border for cohesion */
+}
+
+.navbar .nav-link {
+  color: #ffffff !important; /* White text, matching base navbar */
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.navbar .nav-link:hover {
+  color: #006666 !important; /* Darker teal, matching base navbar hover */
+}
+
+.navbar-toggler {
+  background-color: #008080; /* Teal, matching navbar */
+  border: 1px solid #ffffff; /* White border for visibility */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  /* White icon, matching nav-link color */
+}
+
+.navbar-collapse {
+  background-color: #008080; /* Teal for collapsed menu on small screens */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .navbar-logo {
+    height: 60px; /* Reduced for smaller screens */
+  }
+
+  .navbar .nav-link {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .navbar-collapse {
+    padding: 1rem; /* Padding for collapsed menu */
+  }
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark "> 
+    <img src="{% static 'ebook/images/be.png' %}"  alt="Logo" style="height: 90px; border-radius: 40px;">
+    
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav navbar-nav ml-auto">
+         {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}" style="color: white;">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'all_sales' %}" style="color: white;">ALL SALES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'receipt' %}" style="color: white;">RECEIPTS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}" style="color: white;">LOGOUT</a>
+            </li>
+          {% endif %}
+        </ul>
+   </nav>

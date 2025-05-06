@@ -1,0 +1,53 @@
+{% extends "ebook/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .form-container {
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid white;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    color: black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+    max-width: 500px;
+  }
+</style>
+
+<div class="nav-buttons">
+  <a href="/home" class="btn btn-primary font-weight-bold">Home</a>
+  <a href="/deffered_payments_list" class="btn btn-primary font-weight-bold">Back to List</a>
+</div>
+
+<div class="form-container">
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-success font-weight-bold">Submit</button>
+      <button type="reset" class="btn btn-danger font-weight-bold">Cancel</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

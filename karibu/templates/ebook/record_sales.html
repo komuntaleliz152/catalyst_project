@@ -1,0 +1,77 @@
+{% extends 'ebook/base.html' %} 
+{% load crispy_forms_tags %} 
+{% load static %}
+
+{% block content %}
+<br><br>
+
+<style>
+  body {
+    background-color: #ced5d7;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  form {
+    border-radius: 20px;
+    border: 2px solid teal;
+    padding: 30px;
+    background-color: #f0f3f4;
+    width: 450px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    color: teal;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    background-color: teal;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #128c7e;
+  }
+
+  .btn-danger {
+    background-color: #e57373;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: white;
+    margin-top: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-danger:hover {
+    background-color: #c62828;
+  }
+</style>
+
+<div class="container">
+  <form method="POST" action="">
+    <h1>RECORD SALES</h1>
+    {% csrf_token %}
+    {{ sales_form|crispy }}
+
+    <input type="submit" class="btn btn-primary" value="Save">
+    <button type="reset" class="btn btn-danger">Cancel</button>
+  </form>
+</div>
+{% endblock %}

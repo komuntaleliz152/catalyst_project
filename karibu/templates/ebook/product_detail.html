@@ -1,0 +1,181 @@
+{% extends 'ebook/base.html' %}
+{% block content %}
+{% load static %}
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: #f0f7f8;
+  font-family: Arial, 'Raleway', 'Montserrat', sans-serif;
+}
+
+body {
+  flex: 1;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.container, .card {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border: 1px solid #008080;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 700px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  text-align: center;
+  color: #008080;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.card-body h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.card-body .col-lg-5:nth-child(2) h3 {
+  color: #008080;
+  font-weight: bold;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  color: white;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: green;
+}
+
+.btn-secondary:hover {
+  background-color: darkgreen;
+}
+
+.btn-next {
+  float: right;
+  width: 120px;
+  height: 50px;
+  margin: 20px 0;
+  background-color: #008080;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-next:hover {
+  background-color: #006666;
+}
+
+footer {
+  background: #008080;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .card-body .row {
+    flex-direction: column;
+  }
+
+  .btn-container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-next {
+    width: 100%;
+    float: none;
+  }
+}
+</style>
+
+<!-- Next Button -->
+<div class="nav-buttons">
+  <a href="/home/" class="btn-nav">← Back</a>
+  <a href="/receipt/" class="btn-nav">Next →</a>
+</div>
+<!-- Product Details Card -->
+<div class="card">
+  <h5 class="card-title">PRODUCT DETAILS</h5>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-5">
+        <h3>Name:</h3>
+        <h3>Quantity:</h3>
+        <h3>Unit Cost:</h3>
+        <h3>Unit Price:</h3>
+      </div>
+      <div class="col-lg-5">
+        <h3>{{ product.item_name }}</h3>
+        <h3>{{ product.total_quantity }}</h3>
+        <h3>UGX {{ product.unit_cost }}</h3>
+        <h3>UGX {{ product.unit_price }}</h3>
+      </div>
+    </div>
+
+    <div class="btn-container">
+      <a href="{% url 'add_to_stock' product.id %}" class="btn btn-secondary">Update Stock</a>
+      <a href="{% url 'issue_item' product.id %}" class="btn btn-primary">Sale Item</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

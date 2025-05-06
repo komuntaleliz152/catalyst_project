@@ -1,0 +1,113 @@
+{% extends 'ebook/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+  body {
+  font-family: Arial, 'Raleway', 'Montserrat', sans-serif; /* Matching inventory and base */
+  background-color: #f0f7f8; /* Soft light blue, matching inventory body */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure full height */
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Subtle overlay for readability */
+  z-index: 1;
+}
+
+.container {
+  background-color: #ffffff; /* White, matching form-container */
+  border: 1px solid #008080; /* Teal border, matching filter-container */
+  border-radius: 12px; /* Matching form and table containers */
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px; /* Compact for centered content */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Matching form shadow */
+  position: relative;
+  z-index: 2; /* Above overlay */
+  color: #008080; /* Teal text, matching labels */
+  font-size: 2.5rem; /* Matching intended container text size */
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #008080; /* Teal, matching table-header and other headings */
+  margin-bottom: 20px;
+}
+
+.btn-login {
+  background-color: #008080; /* Teal, matching btn-save and btn-login */
+  color: #ffffff; /* White text */
+  padding: 1rem 2rem;
+  font-size: x-large;
+  font-weight: bold;
+  border-radius: 8px; /* Matching other buttons */
+  text-decoration: none;
+  display: inline-block;
+  width: 300px; /* Matching original button */
+  height: 70px; /* Matching original button */
+  line-height: 38px; /* Center text vertically */
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #006666; /* Darker teal, matching button hovers */
+  color: #ffffff;
+}
+
+.logo {
+  max-width: 300px; /* Responsive size, matching landing page logo */
+  height: auto;
+  border-radius: 10px; /* Matching navbar and landing page logos */
+  border: 1px solid #008080; /* Teal border for cohesion */
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn-login {
+    width: 100%;
+    height: 60px;
+    font-size: large;
+    line-height: 28px;
+  }
+
+  .logo {
+    max-width: 200px;
+  }
+}
+</style>
+
+<div class="container text-center" style="color: black; font-weight: 2.5rem;">
+  <h2>Logged Out Successfully!</h2>
+  <br>
+  <a href="{% url 'login' %}">
+    <input type="submit" value="Login Again" class="btn btn-success" style="font-weight: bolder; width:300px; height:70px; color:white; font-size: x-large;" />
+  </a>
+</div>
+
+<div class="row mt-5 justify-content-center align-items-center">
+  <div class="col-lg-5 text-center">
+    <img src="{% static 'ebook/images/logo4.png' %}" alt="Karibu Groceries Ltd Logo" class="img-fluid logo">
+  </div>
+  
+{% endblock %}

@@ -24,6 +24,8 @@ urlpatterns = [
 
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
+
+    path('accounts/login/',auth_views.LoginView.as_view(template_name='ebook/login.html'),name='login'),
    
     path('register/', views.register, name='register'),
     #you tell django to give me the functionality for authentication "functionality to log in".this is the Login for the sales agent.

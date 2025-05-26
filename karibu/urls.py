@@ -8,15 +8,12 @@ urlpatterns = [
     # ... your existing paths ...
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
-   
     path('register/', views.register, name='register'),
-    #you tell django to give me the functionality for authentication "functionality to log in".this is the Login for the sales agent.
     path('', auth_views.LoginView.as_view(template_name='ebook/login.html'), name = 'login'),
     path('Login/', views.Login, name='Login'),
     path('logout/', auth_views.LoginView.as_view(template_name='ebook/logout.html'), name = 'logout'),
     path('home/<int:product_id>/',views.product_detail, name = 'product_detail'),
     path('product/<int:product_id>/edit/', views.edit_detail, name='edit_detail'),
-
     path('delete/<int:product_id>/',views.delete_detail, name = 'delete_detail'),
     path('issue_item/<str:pk>/', views.issue_item, name='issue_item'),
     path('receipt/', views.receipt, name='receipt'),

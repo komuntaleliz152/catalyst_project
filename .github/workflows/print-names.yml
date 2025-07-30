@@ -1,0 +1,14 @@
+name: Print Names
+
+on: [push]
+
+jobs:
+  print-names:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print the First Name
+        run: |
+          echo "Name List:"
+          echo "1. Elizabeth"
+
